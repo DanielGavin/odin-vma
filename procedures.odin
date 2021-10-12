@@ -6,6 +6,33 @@ import vk "vendor:vulkan"
 PFN_vmaAllocateDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 PFN_vmaFreeDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 
+create_vulkan_function :: proc() -> VulkanFunctions {
+	return {
+		AllocateMemory = vk.AllocateMemory,
+		BindBufferMemory = vk.BindBufferMemory,
+		BindBufferMemory2KHR = vk.BindBufferMemory2KHR,
+		BindImageMemory = vk.BindImageMemory,
+		BindImageMemory2KHR = vk.BindImageMemory2KHR,
+		CmdCopyBuffer = vk.CmdCopyBuffer,
+		CreateBuffer = vk.CreateBuffer,
+		CreateImage = vk.CreateImage,
+		DestroyBuffer = vk.DestroyBuffer,
+		DestroyImage = vk.DestroyImage,
+		FlushMappedMemoryRanges = vk.FlushMappedMemoryRanges,
+		FreeMemory = vk.FreeMemory,
+		GetBufferMemoryRequirements = vk.GetBufferMemoryRequirements,
+		GetBufferMemoryRequirements2KHR = vk.GetBufferMemoryRequirements2KHR,
+		GetImageMemoryRequirements = vk.GetImageMemoryRequirements,
+		GetImageMemoryRequirements2KHR = vk.GetImageMemoryRequirements2KHR,
+		GetPhysicalDeviceMemoryProperties = vk.GetPhysicalDeviceMemoryProperties,
+		GetPhysicalDeviceMemoryProperties2KHR = vk.GetPhysicalDeviceMemoryProperties2KHR,
+		GetPhysicalDeviceProperties = vk.GetPhysicalDeviceProperties,
+		InvalidateMappedMemoryRanges = vk.InvalidateMappedMemoryRanges,
+		MapMemory = vk.MapMemory,
+		UnmapMemory = vk.UnmapMemory,
+	};
+}
+
 foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
 
 @(default_calling_convention="c", link_prefix="vma")
