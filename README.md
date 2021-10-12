@@ -15,7 +15,7 @@ create_info := vma.AllocatorCreateInfo {
 	pVulkanFunctions = &vulkan_functions,
 };
 
-if vma.CreateAllocator(&create_info, &device.allocator) != .SUCCESS {
+if vma.CreateAllocator(&create_info, &allocator) != .SUCCESS {
 	log.error("Failed to CreateAllocator");
 }
 
