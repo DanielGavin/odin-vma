@@ -9,9 +9,9 @@ vulkan_functions := vma.create_vulkan_function();
 
 create_info := vma.AllocatorCreateInfo {
 	vulkanApiVersion = vulkan.API_VERSION_1_2,
-	physicalDevice = device.physical_device,
-	device = device.logical_device,
-	instance = render_context.instance,
+	physicalDevice = physical_device,
+	device = device,
+	instance = instance,
 	pVulkanFunctions = &vulkan_functions,
 };
 
