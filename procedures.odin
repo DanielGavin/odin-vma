@@ -6,13 +6,15 @@ import vk "vendor:vulkan"
 PFN_vmaAllocateDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 PFN_vmaFreeDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 
-create_vulkan_functions :: proc() -> VulkanFunctions {
+foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
+
+create_vulkan_function :: proc() -> VulkanFunctions {
 	return {
 		AllocateMemory = vk.AllocateMemory,
 		BindBufferMemory = vk.BindBufferMemory,
-		BindBufferMemory2KHR = vk.BindBufferMemory2KHR,
+		BindBufferMemory2KHR = vk.BindBufferMemory2,
 		BindImageMemory = vk.BindImageMemory,
-		BindImageMemory2KHR = vk.BindImageMemory2KHR,
+		BindImageMemory2KHR = vk.BindImageMemory2,
 		CmdCopyBuffer = vk.CmdCopyBuffer,
 		CreateBuffer = vk.CreateBuffer,
 		CreateImage = vk.CreateImage,
@@ -21,19 +23,17 @@ create_vulkan_functions :: proc() -> VulkanFunctions {
 		FlushMappedMemoryRanges = vk.FlushMappedMemoryRanges,
 		FreeMemory = vk.FreeMemory,
 		GetBufferMemoryRequirements = vk.GetBufferMemoryRequirements,
-		GetBufferMemoryRequirements2KHR = vk.GetBufferMemoryRequirements2KHR,
+		GetBufferMemoryRequirements2KHR = vk.GetBufferMemoryRequirements2,
 		GetImageMemoryRequirements = vk.GetImageMemoryRequirements,
-		GetImageMemoryRequirements2KHR = vk.GetImageMemoryRequirements2KHR,
+		GetImageMemoryRequirements2KHR = vk.GetImageMemoryRequirements2,
 		GetPhysicalDeviceMemoryProperties = vk.GetPhysicalDeviceMemoryProperties,
-		GetPhysicalDeviceMemoryProperties2KHR = vk.GetPhysicalDeviceMemoryProperties2KHR,
+		GetPhysicalDeviceMemoryProperties2KHR = vk.GetPhysicalDeviceMemoryProperties2,
 		GetPhysicalDeviceProperties = vk.GetPhysicalDeviceProperties,
 		InvalidateMappedMemoryRanges = vk.InvalidateMappedMemoryRanges,
 		MapMemory = vk.MapMemory,
 		UnmapMemory = vk.UnmapMemory,
 	};
 }
-
-foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
 
 @(default_calling_convention="c", link_prefix="vma")
 foreign VulkanMemoryAllocator {

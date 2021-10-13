@@ -2,9 +2,9 @@ package vma
 
 import c "core:c"
 
-AllocatorCreateFlags :: distinct bit_set [AllocatorCreateFlagBit; c.int]
+AllocatorCreateFlags :: distinct bit_set [AllocatorCreateFlagBit; u32]
 
-AllocatorCreateFlagBit :: enum c.int {
+AllocatorCreateFlagBit :: enum u32 {
 	EXTERNALLY_SYNCHRONIZED     = 0,
 	KHR_DEDICATED_ALLOCATION    = 1,
 	KHR_BIND_MEMORY2            = 2,
@@ -14,13 +14,13 @@ AllocatorCreateFlagBit :: enum c.int {
 	EXT_MEMORY_PRIORITY         = 7,
 }
 
-RecordFlagBit :: enum c.int {
+RecordFlagBit :: enum u32 {
 	AFTER_CALL = 0,
 }
 
-RecordFlags :: distinct bit_set [RecordFlagBit; c.int]
+RecordFlags :: distinct bit_set [RecordFlagBit; u32]
 
-MemoryUsage :: enum {
+MemoryUsage :: enum u32 {
 	UNKNOWN                  = 0,
 	GPU_ONLY                 = 1,
 	CPU_ONLY                 = 2,
@@ -30,9 +30,9 @@ MemoryUsage :: enum {
 	GPU_LAZILY_ALLOCATED     = 6,
 }
 
-AllocationCreateFlags :: distinct bit_set [AllocationCreateFlagBit; c.int]
+AllocationCreateFlags :: distinct bit_set [AllocationCreateFlagBit; u32]
 
-AllocationCreateFlagBit :: enum c.int {
+AllocationCreateFlagBit :: enum u32 {
 	DEDICATED_MEMORY                   = 0,
 	NEVER_ALLOCATE                     = 1,
 	MAPPED                             = 2,
@@ -51,18 +51,18 @@ AllocationCreateFlagBit :: enum c.int {
 	STRATEGY_MASK                      = STRATEGY_BEST_FIT | STRATEGY_WORST_FIT | STRATEGY_FIRST_FIT,
 }
 
-PoolCreateFlags :: distinct bit_set [PoolCreateFlagBit; c.int]
+PoolCreateFlags :: distinct bit_set [PoolCreateFlagBit; u32]
 
-PoolCreateFlagBit :: enum c.int {
+PoolCreateFlagBit :: enum u32 {
 	IGNORE_BUFFER_IMAGE_GRANULARITY     = 1,
 	LINEAR_ALGORITHM                    = 2,
 	BUDDY_ALGORITHM                     = 3,
 	ALGORITHM_MASK                      = LINEAR_ALGORITHM | BUDDY_ALGORITHM,
 }
 
-DefragmentationFlags :: distinct bit_set [DefragmentationFlagBit; c.int]
+DefragmentationFlags :: distinct bit_set [DefragmentationFlagBit; u32]
 
-DefragmentationFlagBit :: enum {
+DefragmentationFlagBit :: enum u32 {
 	INCREMENTAL = 1,
 }
 

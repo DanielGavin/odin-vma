@@ -9,3 +9,11 @@ MEMORY_BUDGET :: 1;
 BUFFER_DEVICE_ADDRESS :: 1;
 MEMORY_PRIORITY :: 1;
 EXTERNAL_MEMORY :: 1;
+
+Handle                :: distinct rawptr;
+NonDispatchableHandle :: distinct u64;
+
+Pool 	               :: distinct Handle;
+Allocation             :: distinct Handle;
+Allocator              :: distinct Handle;
+DefragmentationContext :: distinct Handle;

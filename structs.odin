@@ -2,15 +2,6 @@ package vma
 
 import vk "vendor:vulkan"
 
-Pool :: ^Pool_T;
-Pool_T :: struct {};
-
-Allocation :: ^Allocation_T;
-Allocation_T :: struct {};
-
-Allocator_T :: struct {};
-Allocator :: ^Allocator_T;
-
 DeviceMemoryCallbacks :: struct {
     pfnAllocate : PFN_vmaAllocateDeviceMemoryFunction,
     pfnFree     : PFN_vmaFreeDeviceMemoryFunction,
@@ -136,10 +127,6 @@ AllocationInfo :: struct {
     pMappedData  : rawptr,
     pUserData    : rawptr,
 }
-
-DefragmentationContext :: ^DefragmentationContext_T
-
-DefragmentationContext_T :: struct {}
 
 DefragmentationInfo2 :: struct {
     flags                   : DefragmentationFlags,
