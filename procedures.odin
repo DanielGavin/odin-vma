@@ -6,7 +6,7 @@ import vk "vendor:vulkan"
 PFN_vmaAllocateDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 PFN_vmaFreeDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 
-create_vulkan_function :: proc() -> VulkanFunctions {
+create_vulkan_functions :: proc() -> VulkanFunctions {
 	return {
 		AllocateMemory = vk.AllocateMemory,
 		BindBufferMemory = vk.BindBufferMemory,

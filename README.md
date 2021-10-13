@@ -5,7 +5,7 @@ Binding for VulkanMemoryAllocator.
 ## Usage
 
 ```
-vulkan_functions := vma.create_vulkan_function();
+vulkan_functions := vma.create_vulkan_functions();
 
 create_info := vma.AllocatorCreateInfo {
 	vulkanApiVersion = vulkan.API_VERSION_1_2,
