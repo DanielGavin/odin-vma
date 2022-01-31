@@ -3,8 +3,8 @@ package vma
 import c "core:c"
 import vk "vendor:vulkan"
 
-PFN_vmaAllocateDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
-PFN_vmaFreeDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
+PFN_vmaAllocateDeviceMemoryFunction :: proc "c" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
+PFN_vmaFreeDeviceMemoryFunction :: proc "c" (allocator : Allocator, memoryType : u32, memory : vk.DeviceMemory, size : vk.DeviceSize, pUserData : rawptr)
 
 foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
 
