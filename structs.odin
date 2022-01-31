@@ -9,6 +9,8 @@ DeviceMemoryCallbacks :: struct {
 }
 
 VulkanFunctions :: struct {
+    unused_1                              : proc(), //vkGetInstanceProcAddr
+    unused_2                              : proc(), //vkGetDeviceProcAddr
     GetPhysicalDeviceProperties           : vk.ProcGetPhysicalDeviceProperties,
     GetPhysicalDeviceMemoryProperties     : vk.ProcGetPhysicalDeviceMemoryProperties,
     AllocateMemory                        : vk.ProcAllocateMemory,
@@ -33,11 +35,6 @@ VulkanFunctions :: struct {
     GetPhysicalDeviceMemoryProperties2KHR : vk.ProcGetPhysicalDeviceMemoryProperties2KHR,
 }
 
-RecordSettings :: struct {
-    flags     : RecordFlags,
-    pFilePath : cstring,
-}
-
 AllocatorCreateInfo :: struct {
     flags                          : AllocatorCreateFlags,
     physicalDevice                 : vk.PhysicalDevice,
@@ -45,10 +42,8 @@ AllocatorCreateInfo :: struct {
     preferredLargeHeapBlockSize    : vk.DeviceSize,
     pAllocationCallbacks           : ^vk.AllocationCallbacks,
     pDeviceMemoryCallbacks         : ^DeviceMemoryCallbacks,
-    frameInUseCount                : u32,
     pHeapSizeLimit                 : ^vk.DeviceSize,
     pVulkanFunctions               : ^VulkanFunctions,
-    pRecordSettings                : ^RecordSettings,
     instance                       : vk.Instance,
     vulkanApiVersion               : u32,
     pTypeExternalMemoryHandleTypes : ^vk.ExternalMemoryHandleTypeFlagsKHR,
@@ -71,7 +66,6 @@ StatInfo :: struct {
     allocationSizeMax  : vk.DeviceSize,
     unusedRangeSizeMin : vk.DeviceSize,
     unusedRangeSizeAvg : vk.DeviceSize,
-    unusedRangeSizeMax : vk.DeviceSize,
 }
 
 Stats :: struct {
@@ -104,7 +98,6 @@ PoolCreateInfo :: struct {
     blockSize              : vk.DeviceSize,
     minBlockCount          : uint,
     maxBlockCount          : uint,
-    frameInUseCount        : u32,
     priority               : f32,
     minAllocationAlignment : vk.DeviceSize,
     pMemoryAllocateNext    : rawptr,
@@ -115,7 +108,6 @@ PoolStats :: struct {
     unusedSize         : vk.DeviceSize,
     allocationCount    : uint,
     unusedRangeCount   : uint,
-    unusedRangeSizeMax : vk.DeviceSize,
     blockCount         : uint,
 }
 

@@ -14,12 +14,6 @@ AllocatorCreateFlagBit :: enum u32 {
 	EXT_MEMORY_PRIORITY         = 7,
 }
 
-RecordFlagBit :: enum u32 {
-	AFTER_CALL = 0,
-}
-
-RecordFlags :: distinct bit_set [RecordFlagBit; u32]
-
 MemoryUsage :: enum u32 {
 	UNKNOWN                  = 0,
 	GPU_ONLY                 = 1,
@@ -36,19 +30,16 @@ AllocationCreateFlagBit :: enum u32 {
 	DEDICATED_MEMORY                   = 0,
 	NEVER_ALLOCATE                     = 1,
 	MAPPED                             = 2,
-	CAN_BECOME_LOST                    = 4,
-	CAN_MAKE_OTHER_LOST                = 5,
 	USER_DATA_COPY_STRING              = 6,
 	UPPER_ADDRESS                      = 7,
 	DONT_BIND                          = 8,
 	WITHIN_BUDGET                      = 9,
-	STRATEGY_BEST_FIT                  = 17,
-	STRATEGY_WORST_FIT                 = 18,
-	STRATEGY_FIRST_FIT                 = 19,
-	STRATEGY_MIN_MEMORY                = STRATEGY_BEST_FIT,
-	STRATEGY_MIN_TIME                  = STRATEGY_FIRST_FIT,
-	STRATEGY_MIN_FRAGMENTATION         = STRATEGY_WORST_FIT,
-	STRATEGY_MASK                      = STRATEGY_BEST_FIT | STRATEGY_WORST_FIT | STRATEGY_FIRST_FIT,
+	CAN_ALIAS                          = 10,
+	STRATEGY_MIN_MEMORY                = 17,
+	STRATEGY_MIN_TIME                  = 18,
+	STRATEGY_BEST_FIT                  = STRATEGY_MIN_MEMORY,
+	STRATEGY_FIRST_FIT                 = STRATEGY_MIN_TIME,
+	STRATEGY_MASK                      = STRATEGY_MIN_MEMORY | STRATEGY_MIN_TIME,
 }
 
 PoolCreateFlags :: distinct bit_set [PoolCreateFlagBit; u32]
@@ -57,7 +48,8 @@ PoolCreateFlagBit :: enum u32 {
 	IGNORE_BUFFER_IMAGE_GRANULARITY     = 1,
 	LINEAR_ALGORITHM                    = 2,
 	BUDDY_ALGORITHM                     = 3,
-	ALGORITHM_MASK                      = LINEAR_ALGORITHM | BUDDY_ALGORITHM,
+	TLSF_ALGORITHM                      = 4,
+	ALGORITHM_MASK                      = LINEAR_ALGORITHM | BUDDY_ALGORITHM | TLSF_ALGORITHM,
 }
 
 DefragmentationFlags :: distinct bit_set [DefragmentationFlagBit; u32]

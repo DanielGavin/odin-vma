@@ -8,7 +8,7 @@ PFN_vmaFreeDeviceMemoryFunction :: proc "stdcall" (allocator : Allocator, memory
 
 foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
 
-create_vulkan_function :: proc() -> VulkanFunctions {
+create_vulkan_functions :: proc() -> VulkanFunctions {
 	return {
 		AllocateMemory = vk.AllocateMemory,
 		BindBufferMemory = vk.BindBufferMemory,
@@ -54,7 +54,6 @@ foreign VulkanMemoryAllocator {
 	CreatePool                                                           :: proc(allocator : Allocator, pCreateInfo : ^PoolCreateInfo, pPool : ^Pool) -> vk.Result ---;
 	DestroyPool                                                          :: proc(allocator : Allocator, pool : Pool) ---;
 	GetPoolStats                                                         :: proc(allocator : Allocator, pool : Pool, pPoolStats : ^PoolStats) ---;
-	MakePoolAllocationsLost                                              :: proc(allocator : Allocator, pool : Pool, pLostAllocationCount : ^uint) ---;
 	CheckPoolCorruption                                                  :: proc(allocator : Allocator, pool : Pool) -> vk.Result ---;
 	GetPoolName                                                          :: proc(allocator : Allocator, pool : Pool, ppName : ^cstring) ---;
 	SetPoolName                                                          :: proc(allocator : Allocator, pool : Pool, pName : cstring) ---;
@@ -65,9 +64,7 @@ foreign VulkanMemoryAllocator {
 	FreeMemory                                                           :: proc(allocator : Allocator, allocation : Allocation) ---;
 	FreeMemoryPages                                                      :: proc(allocator : Allocator, allocationCount : uint, pAllocations : ^Allocation) ---;
 	GetAllocationInfo                                                    :: proc(allocator : Allocator, allocation : Allocation, pAllocationInfo : ^AllocationInfo) ---;
-	TouchAllocation                                                      :: proc(allocator : Allocator, allocation : Allocation) -> b32 ---;
 	SetAllocationUserData                                                :: proc(allocator : Allocator, allocation : Allocation, pUserData : rawptr) ---;
-	CreateLostAllocation                                                 :: proc(allocator : Allocator, pAllocation : ^Allocation) ---;
 	MapMemory                                                            :: proc(allocator : Allocator, allocation : Allocation, ppData : ^rawptr) -> vk.Result ---;
 	UnmapMemory                                                          :: proc(allocator : Allocator, allocation : Allocation) ---;
 	FlushAllocation                                                      :: proc(allocator : Allocator, allocation : Allocation, offset : vk.DeviceSize, size : vk.DeviceSize) -> vk.Result ---;
