@@ -27,7 +27,7 @@ https://gpuopen-librariesandsdks.github.io/VulkanMemoryAllocator/html/quick_star
 ## Building vma
 Build the library with dynamically linked and statically linked off - we are passing the pointers to vma manually.
 
-`
+```
 option(VMA_STATIC_VULKAN_FUNCTIONS "Link statically with Vulkan API" OFF)
 option(VMA_DYNAMIC_VULKAN_FUNCTIONS "Fetch pointers to Vulkan functions internally (no static linking)" OFF)
-`
+```
