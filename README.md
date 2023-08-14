@@ -23,3 +23,11 @@ if vma.CreateAllocator(&create_info, &allocator) != .SUCCESS {
 
 ## Introduction to vma
 https://gpuopen-librariesandsdks.github.io/VulkanMemoryAllocator/html/quick_start.html#quick_start_initialization
+
+## Building vma
+Build the library with dynamically linked and statically linked off - we are passing the pointers to vma manually.
+
+`
+option(VMA_STATIC_VULKAN_FUNCTIONS "Link statically with Vulkan API" OFF)
+option(VMA_DYNAMIC_VULKAN_FUNCTIONS "Fetch pointers to Vulkan functions internally (no static linking)" OFF)
+`
