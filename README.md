@@ -4,7 +4,7 @@ Binding for VulkanMemoryAllocator.
 
 ## Usage
 
-The blob for the Windows library is shipped with the repository, but not for Linux. All code is modified to import the required files if you are on Linux, so no changes to the code need to be made. [Build instructions for VMA on linux](##building-vma)
+The blob for the Windows library is shipped with the repository, but not for Linux. All code is modified to import the required files if you are on Linux, so no changes to the code need to be made. [Build instructions for VMA on linux](#building-vma)
 
 ```
 vulkan_functions := vma.create_vulkan_functions();
