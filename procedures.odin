@@ -18,7 +18,8 @@ PFN_vmaFreeDeviceMemoryFunction :: proc "c" (
 	pUserData: rawptr,
 )
 
-foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
+when ODIN_OS == .Windows do foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
+when ODIN_OS == .Linux do @(extra_linker_flags="-lstdc++") foreign import VulkanMemoryAllocator "external/libVulkanMemoryAllocator.a"
 
 create_vulkan_functions :: proc() -> VulkanFunctions {
 	return(
