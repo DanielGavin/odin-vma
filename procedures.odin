@@ -18,8 +18,31 @@ PFN_vmaFreeDeviceMemoryFunction :: proc "c" (
 	pUserData: rawptr,
 )
 
-when ODIN_OS == .Windows do foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
-when ODIN_OS == .Linux do @(extra_linker_flags="-lstdc++") foreign import VulkanMemoryAllocator "external/libVulkanMemoryAllocator.a"
+when ODIN_OS == .Linux || ODIN_OS == .Darwin {
+	@(require) foreign import stdcpp "system:c++"
+}
+
+when ODIN_OS == .Windows { 
+    foreign import VulkanMemoryAllocator "external/VulkanMemoryAllocator.lib"
+} else when ODIN_OS == .Darwin {
+	when ODIN_ARCH == .amd64 {
+		@(extra_linker_flags="-lstdc++")
+		foreign import VulkanMemoryAllocator "external/vma_darwin_x64.a"
+	} else when ODIN_ARCH == .arm64 {
+		@(extra_linker_flags="-lstdc++")
+		foreign import VulkanMemoryAllocator "external/vma_darwin_arm64.a"
+	}
+} else when ODIN_OS == .Linux { 
+	when ODIN_ARCH == .amd64 {
+		@(extra_linker_flags="-lstdc++")
+		foreign import VulkanMemoryAllocator "external/vma_linux_x64.a"
+	} else when ODIN_ARCH == .arm64 {
+		@(extra_linker_flags="-lstdc++")
+		foreign import VulkanMemoryAllocator "external/vma_linux_arm64.a"
+	}
+} else {
+	#panic("Unsupported platform for VMA library")
+}
 
 create_vulkan_functions :: proc() -> VulkanFunctions {
 	return(
