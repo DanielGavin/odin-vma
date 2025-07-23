@@ -1,2 +1,6 @@
 .exe
 ols.json
+build/
+
+external/*
+!external/VulkanMemoryAllocator.lib
