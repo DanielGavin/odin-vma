@@ -119,7 +119,7 @@ CXXFLAGS="-O1 -DNDEBUG"
 # Determine platform and architecture for library naming
 OS_NAME=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH_NAME=$(uname -m)
-if [ "$ARCH_NAME" == "aarch64" ]; then
+if [ "$ARCH_NAME" == "aarch64" ] || [ "$ARCH_NAME" == "arm64" ]; then
     ARCH_NAME="arm64"
 else
     ARCH_NAME="x64"
